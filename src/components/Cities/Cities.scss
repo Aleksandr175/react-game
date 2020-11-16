@@ -1,0 +1,13 @@
+.cities-list {
+  text-align: center;
+  padding: 10px;
+
+  background: #888;
+  margin-bottom: 30px;
+
+  .city {
+    color: white;
+    display: inline-block;
+    padding: 5px 20px;
+  }
+}
