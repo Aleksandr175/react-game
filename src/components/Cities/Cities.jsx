@@ -1,11 +1,38 @@
-import './Cities.scss';
+import "./Cities.scss";
 
-function Cities() {
+function Cities(props) {
+  const cities = [
+    {
+      id: 1,
+      title: "Город 1",
+    },
+    {
+      id: 2,
+      title: "Город 2",
+    },
+    {
+      id: 3,
+      title: "Город 3",
+    },
+  ];
+
   return (
     <div className="cities-list">
-      <a className="city" href="#">Город 1</a>
-      <a className="city" href="#">Город 2</a>
-      <a className="city" href="#">Город 3</a>
+      {cities.map((city) => {
+        return (
+          <a
+            className={
+              "city " + (props.currentCity === city.id ? "active" : "")
+            }
+            href="#"
+            onClick={() => {
+              props.onChange(city.id);
+            }}
+          >
+            {city.title}
+          </a>
+        );
+      })}
     </div>
   );
 }
