@@ -1,0 +1,29 @@
+.title {
+  background: #44200c;
+  border: 1px solid #877f72;
+  padding: 10px;
+  margin: 0;
+  color: #a68156;
+}
+
+.panel {
+  border: 1px solid #877f72;
+  border-top: 0;
+}
+
+.goods {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+
+  .good-item {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #877f72;
+    margin: 5px;
+    vertical-align: top;
+
+    font-size: 12px;
+  }
+}

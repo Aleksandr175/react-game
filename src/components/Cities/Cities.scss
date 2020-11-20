@@ -1,18 +1,20 @@
 .cities-list {
   text-align: center;
-  padding: 10px;
+  padding: 0 10px;
 
   background: #888;
-  margin-bottom: 30px;
 
   .city {
     color: white;
     display: inline-block;
-    padding: 5px 20px;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-weight: 700;
 
     &.active {
-      font-weight: 700;
+      color: #a68156;
       text-decoration: none;
+      background: #2d251a;
     }
   }
 }
