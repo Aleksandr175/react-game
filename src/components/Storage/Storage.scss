@@ -1,22 +1,10 @@
-.title {
-  background: #44200c;
-  border: 1px solid #877f72;
-  padding: 10px;
-  margin: 0;
-  color: #a68156;
-}
-
-.panel {
-  border: 1px solid #877f72;
-  border-top: 0;
-}
-
 .goods {
   display: inline-block;
   padding: 0;
   margin: 0;
 
   .good-item {
+    position: relative;
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -25,5 +13,74 @@
     vertical-align: top;
 
     font-size: 12px;
+    background-image: url('../../icons.png');
+    background-repeat: no-repeat;
+
+    .good-description {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 14px;
+      text-align: center;
+      color: white;
+      font-size: 10px;
+      background: black;
+      opacity: .7;
+    }
+
+    &.no-item {
+      background-image: none;
+    }
+
+    &.item-1 {
+      background-position: 0 0;
+    }
+
+    &.item-2 {
+      background-position: -55px 0;
+    }
+
+    &.item-3 {
+      background-position: -110px 0;
+    }
+
+    &.item-4 {
+      background-position: -165px 0;
+    }
+
+    &.item-5 {
+      background-position: -220px 0;
+    }
+
+    &.item-6 {
+      background-position: -275px 0;
+    }
+
+    &.item-7 {
+      background-position: -330px 0;
+    }
+
+    &.item-8 {
+      background-position: 0 -55px;
+    }
+    &.item-9 {
+      background-position: -55px -55px;
+    }
+    &.item-10 {
+      background-position: -110px -55px;
+    }
+    &.item-11 {
+      background-position: -165px -55px;
+    }
+    &.item-12 {
+      background-position: -220px -55px;
+    }
+    &.item-13 {
+      background-position: -275px -55px;
+    }
+    &.item-14 {
+      background-position: -330px -55px;
+    }
   }
 }

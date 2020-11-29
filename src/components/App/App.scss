@@ -20,8 +20,23 @@
       width: 300px;
 
       &:last-child {
-        width: 480px;
+        width: 470px;
       }
     }
   }
+
+  .title {
+    background: #44200c;
+    border: 1px solid #877f72;
+    padding: 10px;
+    margin: 0;
+    color: #a68156;
+  }
+
+  .panel {
+    border: 1px solid #877f72;
+    border-top: 0;
+    margin-bottom: 10px;
+  }
+
 }

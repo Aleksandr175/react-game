@@ -1,0 +1,24 @@
+.stats-panel {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  .money {
+    position: relative;
+    padding-left: 30px;
+
+    &:before {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 42px;
+      height: 45px;
+
+      background: url('../../icons.png') -385px 0;
+      transform: scale(.4);
+
+      left: -10px;
+      top: -14px;
+    }
+  }
+}
