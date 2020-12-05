@@ -15,6 +15,11 @@
     font-size: 12px;
     background-image: url('../../icons.png');
     background-repeat: no-repeat;
+    cursor: pointer;
+
+    &.selected {
+      border-color: yellow;
+    }
 
     .good-description {
       position: absolute;
@@ -31,6 +36,7 @@
 
     &.no-item {
       background-image: none;
+      cursor: default;
     }
 
     &.item-1 {
@@ -81,6 +87,49 @@
     }
     &.item-14 {
       background-position: -330px -55px;
+    }
+  }
+}
+
+.sell-panel {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+
+  .controls {
+    display: flex;
+    justify-content: space-between;
+
+    .input {
+      background: none;
+      width: 30px;
+      border: 1px solid #877f72;
+      color: #a68156;
+      margin-right: 5px;
+
+      &:focus,
+      &:active {
+        box-shadow: none;
+        outline: none;
+      }
+    }
+
+    .button {
+      background: #44200c;
+      color: #a68156;
+      border: 1px solid #877f72;
+      font-size: 12px;
+      cursor: pointer;
+      margin-left: 10px;
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+
+      &:hover {
+        color: white;
+      }
     }
   }
 }

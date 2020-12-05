@@ -10,6 +10,8 @@ import Stats from "../Stats/Stats";
 function App() {
   const [currentCity, setCurrentCity] = useState(1);
 
+  const [selectedGood, setSelectedGood] = useState(1);
+
   const [storages, setStorages] = useState([
     {
       cityId: 1,
@@ -129,6 +131,38 @@ function App() {
     }
   }
 
+  function sellGoods(goodId, qty) {
+    const storagesNew = storages;
+    let moneyNew = money;
+
+    const index = storagesNew.findIndex((storage) => {
+      return storage.cityId === currentCity;
+    });
+
+    if (index > -1) {
+      const goodIndex = storagesNew[index].storage.findIndex((good) => {
+        return good.id === goodId;
+      });
+
+      if (goodIndex > -1) {
+        storagesNew[index].storage[goodIndex].qty -= qty;
+        moneyNew += qty * 10;
+
+        setMoney(moneyNew);
+      }
+    }
+
+    setStorages(storagesNew);
+  }
+
+  function liveProcess() {
+    setTimeout(() => {
+      setDays(days + 1);
+    }, 5000);
+  }
+
+  liveProcess();
+
   return (
     <div className="app">
       <h1 className="app-name">Спекулянтик</h1>
@@ -146,7 +180,14 @@ function App() {
             <Storage
               currentCity={currentCity}
               storage={getStorageByCity()}
+              selectedGood={selectedGood}
               goods={goods}
+              onSelectGood={(goodId) => {
+                setSelectedGood(goodId);
+              }}
+              onSell={(id, qty) => {
+                sellGoods(id, qty);
+              }}
             />
           </div>
           <div className="transportations">
