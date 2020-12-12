@@ -2,20 +2,7 @@ import "./CityStorage.scss";
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-function CityStorage() {
-  const data = {
-    labels: ["1", "2", "3", "4", "5", "6", "7", "8"],
-    datasets: [
-      {
-        label: "Цена за шт.",
-        data: [12, 19, 3, 5, 2, 3, 14],
-        fill: false,
-        backgroundColor: "#a68156",
-        borderColor: "rgba(166, 129, 86, 0.2)",
-      },
-    ],
-  };
-
+function CityStorage(props) {
   const options = {
     legend: {
       display: false,
@@ -44,7 +31,7 @@ function CityStorage() {
       yAxes: [
         {
           ticks: {
-            beginAtZero: true,
+            beginAtZero: false,
           },
           gridLines: {
             display: false,
@@ -61,25 +48,37 @@ function CityStorage() {
     },
   };
 
+  function getGoodData(priceStats) {
+    return {
+      labels: ["1", "2", "3", "4", "5", "6", "7", "8"],
+      datasets: [
+        {
+          label: "Цена за шт.",
+          data: priceStats,
+          fill: false,
+          backgroundColor: "#a68156",
+          borderColor: "rgba(166, 129, 86, 0.2)",
+        },
+      ],
+    };
+  }
+
   return (
     <div>
       <h2 className="title">Городской склад</h2>
 
       <div className="panel">
         <div className="city-goods">
-          <div className="good-item-wrapper">
-            <div className="good-item item-1"></div>
-            <div className="good-item-stats">
-              <Line data={data} options={options} />
-            </div>
-          </div>
-
-          <div className="good-item-wrapper">
-            <div className="good-item item-2"></div>
-            <div className="good-item-stats">
-              <Line data={data} options={options} />
-            </div>
-          </div>
+          {props.storage.map((good) => {
+            return (
+              <div className="good-item-wrapper">
+                <div className={"good-item item-" + good.id} />
+                <div className="good-item-stats">
+                  <Line data={getGoodData(good.priceStats)} options={options} />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
