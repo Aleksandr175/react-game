@@ -7,3 +7,31 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+
+input {
+  box-sizing: border-box;
+
+  &:focus,
+  &:active {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.button {
+  background: #44200c;
+  color: #a68156;
+  border: 1px solid #877f72;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:hover {
+    color: white;
+  }
+}

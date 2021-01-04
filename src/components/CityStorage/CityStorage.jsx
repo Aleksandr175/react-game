@@ -1,5 +1,5 @@
 import "./CityStorage.scss";
-import React from "react";
+import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 
 function CityStorage(props) {
@@ -48,6 +48,8 @@ function CityStorage(props) {
     },
   };
 
+  let [number, setNumber] = useState(0);
+
   function getGoodData(priceStats) {
     return {
       labels: ["1", "2", "3", "4", "5", "6", "7", "8"],
@@ -72,7 +74,38 @@ function CityStorage(props) {
           {props.storage.map((good) => {
             return (
               <div className="good-item-wrapper">
-                <div className={"good-item item-" + good.id} />
+                <div className="good-item-description">
+                  <div className={"good-item item-" + good.id} />
+
+                  <input
+                    className="input-number"
+                    name="count"
+                    autoComplete={false}
+                    value={number}
+                    maxLength={3}
+                    onChange={(e) => {
+                      setNumber(e.currentTarget.value);
+                    }}
+                  />
+
+                  <button
+                    className="button"
+                    onClick={() => {
+                      props.onBuy(
+                        good.id,
+                        number,
+                        good.priceStats[good.priceStats.length - 1]
+                      );
+                      setNumber(0);
+                    }}
+                  >
+                    Купить
+                  </button>
+
+                  <p className="price-description">
+                    {good.priceStats[good.priceStats.length - 1]} за шт.
+                  </p>
+                </div>
                 <div className="good-item-stats">
                   <Line data={getGoodData(good.priceStats)} options={options} />
                 </div>

@@ -246,6 +246,39 @@ function App() {
     }
   }
 
+  function buyGoods(goodId, qty, price) {
+    const totalPrice = qty * price;
+
+    if (money >= totalPrice) {
+      const storagesNew = storages;
+
+      const index = storagesNew.findIndex((storage) => {
+        return storage.cityId === currentCity;
+      });
+
+      if (index > -1) {
+        const goodIndex = storagesNew[index].storage.findIndex((good) => {
+          return good.id === goodId;
+        });
+
+        if (goodIndex > -1) {
+          const newQty =
+            parseInt(storagesNew[index].storage[goodIndex].qty) +
+            parseInt(qty, 10);
+          storagesNew[index].storage[goodIndex].qty = newQty;
+        } else {
+          storagesNew[index].storage.push({
+            id: goodId,
+            qty: qty,
+          });
+        }
+      }
+
+      setStorages(storagesNew);
+      setMoney(money - totalPrice);
+    }
+  }
+
   return (
     <div className="app">
       <h1 className="app-name">Спекулянтик</h1>
@@ -282,7 +315,12 @@ function App() {
         </div>
         <div className="column">
           <div className="city-storage">
-            <CityStorage storage={getCityStorage()} />
+            <CityStorage
+              storage={getCityStorage()}
+              onBuy={(goodId, number, price) => {
+                buyGoods(goodId, number, price);
+              }}
+            />
           </div>
         </div>
       </div>
