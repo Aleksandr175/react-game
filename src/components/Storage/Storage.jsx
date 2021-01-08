@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Storage.scss";
 
 function Storage(props) {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState("");
 
   function findGoodById(itemId) {
     return props.goods.find((item) => {
@@ -15,7 +15,12 @@ function Storage(props) {
       return Array(8 - props.storage.length)
         .fill()
         .map(() => {
-          return <li className="good-item no-item"></li>;
+          return (
+            <li
+              className="good-item no-item"
+              key={"empty-cell-" + (8 - props.storage.length)}
+            ></li>
+          );
         });
     }
   }
@@ -29,6 +34,7 @@ function Storage(props) {
           {props.storage.map((item) => {
             return (
               <li
+                key={"storage-item-" + item.id}
                 className={
                   "good-item item-" +
                   item.id +
@@ -53,9 +59,10 @@ function Storage(props) {
               <input
                 type="text"
                 className="input"
+                maxLength={3}
                 value={qty}
                 onChange={(e) => {
-                  setQty(parseInt(e.target.value, 10));
+                  setQty(parseInt(e.target.value, 10) || "");
                 }}
               />{" "}
               шт.

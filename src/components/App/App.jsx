@@ -160,6 +160,18 @@ function App() {
     }
   }
 
+  function getCityStorageByCity() {
+    const store = cityStorages.find((storage) => {
+      return storage.cityId === currentCity;
+    });
+
+    if (store) {
+      return store.storage;
+    } else {
+      return [];
+    }
+  }
+
   function sellGoods(goodId, qty) {
     const storagesNew = storages;
     let moneyNew = money;
@@ -174,10 +186,25 @@ function App() {
       });
 
       if (goodIndex > -1) {
-        storagesNew[index].storage[goodIndex].qty -= qty;
-        moneyNew += qty * 10;
+        const currentCityStorage = getCityStorageByCity();
 
-        setMoney(moneyNew);
+        const goodIndex = currentCityStorage.findIndex((good) => {
+          return good.id === goodId;
+        });
+
+        if (goodIndex > -1) {
+          const price =
+            currentCityStorage[goodIndex].priceStats[
+              currentCityStorage[goodIndex].priceStats.length - 1
+            ];
+
+          if (storagesNew[index].storage[goodIndex].qty >= qty) {
+            storagesNew[index].storage[goodIndex].qty -= qty;
+            moneyNew += qty * price;
+
+            setMoney(moneyNew);
+          }
+        }
       }
     }
 
