@@ -148,6 +148,8 @@ function App() {
     },
   ];
 
+  const [transportOrders, setTransportOrders] = useState([]);
+
   function getStorageByCity() {
     const store = storages.find((storage) => {
       return storage.cityId === currentCity;
@@ -273,6 +275,27 @@ function App() {
     }
   }
 
+  function createTransportOrder(targetCityId) {
+    const newOrders = transportOrders;
+
+    const storage = getStorageByCity();
+
+    const goodIndex = storage.findIndex((good) => good.id == selectedGood);
+
+    if (goodIndex > -1) {
+      newOrders.push({
+        targetCityId,
+        goodId: selectedGood,
+        qty: storage[goodIndex].qty,
+        days: 30,
+      });
+
+      setTransportOrders(newOrders);
+    }
+
+    console.log(newOrders);
+  }
+
   function buyGoods(goodId, qty, price) {
     const totalPrice = qty * price;
 
@@ -330,6 +353,9 @@ function App() {
               }}
               onSell={(id, qty) => {
                 sellGoods(id, qty);
+              }}
+              onTransport={(targetCityId) => {
+                createTransportOrder(targetCityId);
               }}
             />
           </div>
