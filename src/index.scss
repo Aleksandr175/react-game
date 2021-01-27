@@ -34,4 +34,13 @@ input {
   &:hover {
     color: white;
   }
+
+  &[disabled] {
+    background: #777;
+    cursor: not-allowed;
+
+    &:hover {
+      color: #a68156;
+    }
+  }
 }

@@ -1,0 +1,96 @@
+.transportations {
+  .good-item-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .good-item-description {
+      width: 52px;
+      margin: 5px;
+    }
+
+    .good-item {
+      width: 50px;
+      height: 50px;
+      border: 1px solid #877f72;
+      vertical-align: top;
+
+      background-image: url('../../icons.png');
+      background-repeat: no-repeat;
+      cursor: pointer;
+
+      &.item-1 {
+        background-position: 0 0;
+      }
+
+      &.item-2 {
+        background-position: -55px 0;
+      }
+
+      &.item-3 {
+        background-position: -110px 0;
+      }
+
+      &.item-4 {
+        background-position: -165px 0;
+      }
+
+      &.item-5 {
+        background-position: -220px 0;
+      }
+
+      &.item-6 {
+        background-position: -275px 0;
+      }
+
+      &.item-7 {
+        background-position: -330px 0;
+      }
+
+      &.item-8 {
+        background-position: 0 -55px;
+      }
+      &.item-9 {
+        background-position: -55px -55px;
+      }
+      &.item-10 {
+        background-position: -110px -55px;
+      }
+      &.item-11 {
+        background-position: -165px -55px;
+      }
+      &.item-12 {
+        background-position: -220px -55px;
+      }
+      &.item-13 {
+        background-position: -275px -55px;
+      }
+      &.item-14 {
+        background-position: -330px -55px;
+      }
+    }
+
+    .good-item-transport-info {
+      display: flex;
+      padding: 5px;
+      width: 100%;
+      text-align: left;
+      justify-content: space-between;
+      align-items: center;
+
+      .header,
+      .path,
+      .days {
+        font-size: 14px;
+        padding: 3px 0 3px;
+      }
+
+      .days {
+        text-align: center;
+      }
+    }
+
+    .button {
+      margin: 0;
+    }
+  }
+}

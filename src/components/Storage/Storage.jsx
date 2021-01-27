@@ -10,46 +10,42 @@ function Storage(props) {
     }).title;
   }
 
-  function getEmptyCells() {
-    if (props.storage.length < 8) {
-      return Array(8 - props.storage.length)
-        .fill()
-        .map(() => {
-          return (
-            <li
-              className="good-item no-item"
-              key={"empty-cell-" + (8 - props.storage.length)}
-            ></li>
-          );
-        });
-    }
-  }
-
   return (
     <div>
       <h2 className="title">Мой склад</h2>
 
       <div className="panel">
         <ul className="goods">
-          {props.storage.map((item) => {
-            return (
-              <li
-                key={"storage-item-" + item.id}
-                className={
-                  "good-item item-" +
-                  item.id +
-                  (props.selectedGood === item.id ? " selected" : "")
-                }
-                onClick={() => {
-                  props.onSelectGood(item.id);
-                }}
-              >
-                <span className="good-description">{item.qty} шт.</span>
-              </li>
-            );
-          })}
+          {Array(8)
+            .fill()
+            .map((i, index) => {
+              if (props.storage[index]) {
+                const item = props.storage[index];
 
-          {getEmptyCells()}
+                return (
+                  <li
+                    key={"storage-item-" + item.id}
+                    className={
+                      "good-item item-" +
+                      item.id +
+                      (props.selectedGood === item.id ? " selected" : "")
+                    }
+                    onClick={() => {
+                      props.onSelectGood(item.id);
+                    }}
+                  >
+                    <span className="good-description">{item.qty} шт.</span>
+                  </li>
+                );
+              } else {
+                return (
+                  <li
+                    className="good-item no-item"
+                    key={"empty-cell-" + index}
+                  ></li>
+                );
+              }
+            })}
         </ul>
 
         {props.selectedGood ? (
