@@ -1,28 +1,51 @@
 import "./Transportations.scss";
+import { cities } from "../../cities";
 
-function Transportations() {
+function Transportations(props) {
+  function findGoodById(itemId) {
+    return props.goods.find((item) => {
+      return item.id === itemId;
+    }).title;
+  }
+
+  function getCityNameById(cityId) {
+    return cities.find((city) => {
+      return city.id === cityId;
+    }).title;
+  }
+
   return (
     <div className="transportations">
       <h2 className="title">Активные перевозки</h2>
 
       <div className="panel">
-        <div className="good-item-wrapper">
-          <div className="good-item-description">
-            <div className={"good-item item-" + "1"} />
-          </div>
-          <div className="good-item-transport-info">
-            <div>
-              <div className="header">Пиво</div>
-              <div className="path">Город 1 -> Город 2</div>
+        {props.orders.map((order) => {
+          return (
+            <div className="good-item-wrapper">
+              <div className="good-item-description">
+                <div className={"good-item item-" + order.goodId} />
+              </div>
+              <div className="good-item-transport-info">
+                <div>
+                  <div className="header">{findGoodById(order.goodId)}</div>
+                  <div className="path">
+                    {getCityNameById(order.fromCityId)} ->{" "}
+                    {getCityNameById(order.targetCityId)}
+                  </div>
+                </div>
+                <div>
+                  <div className="days">Дни: {order.days}</div>
+                  <button
+                    className="button"
+                    disabled={order.days ? true : false}
+                  >
+                    Получить
+                  </button>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="days">Дни: 12</div>
-              <button className="button" disabled="disabled">
-                Получить
-              </button>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
