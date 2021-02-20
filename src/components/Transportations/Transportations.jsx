@@ -27,7 +27,9 @@ function Transportations(props) {
               </div>
               <div className="good-item-transport-info">
                 <div>
-                  <div className="header">{findGoodById(order.goodId)}</div>
+                  <div className="header">
+                    {findGoodById(order.goodId)}, {order.qty} шт.
+                  </div>
                   <div className="path">
                     {getCityNameById(order.fromCityId)} ->{" "}
                     {getCityNameById(order.targetCityId)}
@@ -38,6 +40,9 @@ function Transportations(props) {
                   <button
                     className="button"
                     disabled={order.days ? true : false}
+                    onClick={() => {
+                      props.onAcceptOrder(order);
+                    }}
                   >
                     Получить
                   </button>

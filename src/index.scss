@@ -38,9 +38,10 @@ input, select {
   &[disabled] {
     background: #777;
     cursor: not-allowed;
+    color: #aaa;
 
     &:hover {
-      color: #a68156;
+      color: #aaa;
     }
   }
 }

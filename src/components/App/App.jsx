@@ -55,6 +55,10 @@ function App() {
         },
       ],
     },
+    {
+      cityId: 3,
+      storage: [],
+    },
   ]);
 
   const [cityStorages, setCityStorages] = useState([
@@ -149,6 +153,7 @@ function App() {
   ];
 
   const [transportOrders, setTransportOrders] = useState([]);
+  const [orderId, setOrderId] = useState(1);
 
   function getStorageByCity() {
     const store = storages.find((storage) => {
@@ -190,19 +195,23 @@ function App() {
       if (goodIndex > -1) {
         const currentCityStorage = getCityStorageByCity();
 
-        const goodIndex = currentCityStorage.findIndex((good) => {
+        const cityGoodIndex = currentCityStorage.findIndex((good) => {
           return good.id === goodId;
         });
 
-        if (goodIndex > -1) {
+        if (cityGoodIndex > -1) {
           const price =
-            currentCityStorage[goodIndex].priceStats[
-              currentCityStorage[goodIndex].priceStats.length - 1
+            currentCityStorage[cityGoodIndex].priceStats[
+              currentCityStorage[cityGoodIndex].priceStats.length - 1
             ];
 
           if (storagesNew[index].storage[goodIndex].qty >= qty) {
             storagesNew[index].storage[goodIndex].qty -= qty;
             moneyNew += qty * price;
+
+            if (storagesNew[index].storage[goodIndex].qty === 0) {
+              removeProduct(storagesNew[index].storage[goodIndex].id);
+            }
 
             setMoney(moneyNew);
           }
@@ -299,6 +308,7 @@ function App() {
 
     if (goodIndex > -1) {
       newOrders.push({
+        id: orderId,
         fromCityId: currentCity,
         targetCityId,
         goodId: selectedGood,
@@ -306,8 +316,30 @@ function App() {
         days: 30,
       });
 
+      setOrderId(orderId + 1);
+      removeProduct(selectedGood);
       setTransportOrders(newOrders);
     }
+  }
+
+  function removeProduct(productId) {
+    const storagesNew = storages;
+
+    const index = storagesNew.findIndex((storage) => {
+      return storage.cityId === currentCity;
+    });
+
+    if (index > -1) {
+      const productIndex = storagesNew[index].storage.findIndex((product) => {
+        return product.id === productId;
+      });
+
+      if (productIndex > -1) {
+        storagesNew[index].storage.splice(productIndex, 1);
+      }
+    }
+
+    setStorages(storagesNew);
   }
 
   function buyGoods(goodId, qty, price) {
@@ -343,6 +375,46 @@ function App() {
     }
   }
 
+  function acceptOrder(order) {
+    setTransportOrders((orders) => {
+      const newOrders = [...orders];
+
+      const index = newOrders.findIndex((o) => {
+        return o.id === order.id;
+      });
+
+      if (index > -1) {
+        newOrders.splice(index, 1);
+      }
+
+      return newOrders;
+    });
+
+    // update product qty in target city
+    const storagesNew = storages;
+
+    const index = storagesNew.findIndex((storage) => {
+      return storage.cityId === order.targetCityId;
+    });
+
+    if (index > -1) {
+      const goodIndex = storagesNew[index].storage.findIndex((good) => {
+        return good.id === order.goodId;
+      });
+
+      if (goodIndex > -1) {
+        storagesNew[index].storage[goodIndex].qty += order.qty;
+      } else {
+        storagesNew[index].storage.push({
+          id: order.goodId,
+          qty: order.qty,
+        });
+      }
+    }
+
+    setStorages(storagesNew);
+  }
+
   return (
     <div className="app">
       <h1 className="app-name">Спекулянтик</h1>
@@ -374,7 +446,11 @@ function App() {
             />
           </div>
           <div className="transportations">
-            <Transportations orders={transportOrders} goods={goods} />
+            <Transportations
+              orders={transportOrders}
+              goods={goods}
+              onAcceptOrder={acceptOrder}
+            />
           </div>
           <div className="stats">
             <Stats days={days} money={money} />
