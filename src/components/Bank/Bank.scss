@@ -1,0 +1,41 @@
+.deposits {
+  .good-item-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .good-item-description {
+      width: 52px;
+      margin: 5px;
+    }
+
+    .good-item {
+      width: 50px;
+      height: 50px;
+      border: 1px solid #877f72;
+      vertical-align: top;
+
+      background-image: url('../../icons.png');
+      background-repeat: no-repeat;
+      cursor: pointer;
+
+      &.item-deposit {
+        background-position: -380px 0;
+      }
+    }
+
+    .good-item-deposit-info {
+      display: flex;
+      padding: 5px;
+      width: 100%;
+      text-align: left;
+      justify-content: space-between;
+      align-items: center;
+
+      .header,
+      .days {
+        font-size: 14px;
+        padding: 3px 0 3px;
+      }
+    }
+  }
+}
