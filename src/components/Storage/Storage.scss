@@ -92,9 +92,18 @@
 }
 
 .sell-panel {
-  display: flex;
-  justify-content: space-between;
   padding: 20px 30px;
+
+  .sell-panel-content {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+
+  .sell-panel-info {
+    font-size: 10px;
+    text-align: left;
+  }
 
   .controls {
     display: flex;
