@@ -15,14 +15,6 @@ export const defaultStoragesData = [
         qty: 204,
       },
       {
-        id: 4,
-        qty: 200,
-      },
-      {
-        id: 5,
-        qty: 120,
-      },
-      {
         id: 6,
         qty: 10,
       },
