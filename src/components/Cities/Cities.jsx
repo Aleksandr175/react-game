@@ -6,17 +6,16 @@ function Cities(props) {
     <div className="cities-list">
       {cities.map((city) => {
         return (
-          <a
+          <span
             className={
               "city " + (props.currentCity === city.id ? "active" : "")
             }
-            href="#"
             onClick={() => {
               props.onChange(city.id);
             }}
           >
             {city.title}
-          </a>
+          </span>
         );
       })}
     </div>

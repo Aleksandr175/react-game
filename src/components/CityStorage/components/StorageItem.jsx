@@ -9,8 +9,8 @@ function StorageItem(props) {
 
       <input
         className="input-number"
-        name="count"
-        autoComplete="false"
+        name={"count" + new Date()}
+        autoComplete="new-password"
         value={number}
         maxLength={3}
         onChange={(e) => {
@@ -21,11 +21,13 @@ function StorageItem(props) {
       <button
         className="button"
         onClick={() => {
-          props.onBuy(
-            props.good.id,
-            number,
-            props.good.priceStats[props.good.priceStats.length - 1]
-          );
+          if (number) {
+            props.onBuy(
+              props.good.id,
+              number,
+              props.good.priceStats[props.good.priceStats.length - 1]
+            );
+          }
           setNumber("");
         }}
       >

@@ -1,20 +1,23 @@
+@import "../../vars";
+
 .cities-list {
   text-align: center;
   padding: 0 10px;
 
-  background: #888;
+  background: $color2;
 
   .city {
-    color: white;
+    color: $color4;
     display: inline-block;
     padding: 15px 20px;
     text-decoration: none;
     font-weight: 700;
+    cursor: pointer;
 
     &.active {
-      color: #a68156;
+      color: $color5;
       text-decoration: none;
-      background: #2d251a;
+      background: $color3;
     }
   }
 }

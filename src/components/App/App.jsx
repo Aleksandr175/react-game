@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="app-name">Спекулянтик</h1>
+      <h1 className="app-name">Деревенский трейдер</h1>
 
       <Cities
         currentCity={currentCity}

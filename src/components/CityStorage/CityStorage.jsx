@@ -15,9 +15,9 @@ function CityStorage(props) {
       intersect: false,
       caretSize: 3,
 
-      backgroundColor: "#44200c",
-      bodyFontColor: "#a68156",
-      borderColor: "#877f72",
+      backgroundColor: "#8d6048",
+      bodyFontColor: "#d6ba7a",
+      borderColor: "#8d6048",
       borderWidth: 1,
       displayColors: false,
 
@@ -32,7 +32,10 @@ function CityStorage(props) {
       yAxes: [
         {
           ticks: {
+            stepSize: 1,
             beginAtZero: false,
+            fontColor: "#d6ba7a",
+            fontSize: 10,
           },
           gridLines: {
             display: false,
@@ -57,8 +60,8 @@ function CityStorage(props) {
           label: "Цена за шт.",
           data: priceStats,
           fill: false,
-          backgroundColor: "#a68156",
-          borderColor: "rgba(166, 129, 86, 0.2)",
+          backgroundColor: "#8d6048",
+          borderColor: "#8d604844",
         },
       ],
     };

@@ -1,3 +1,5 @@
+@import "../../vars";
+
 .transportations {
   .good-item-wrapper {
     display: flex;
@@ -11,7 +13,7 @@
     .good-item {
       width: 50px;
       height: 50px;
-      border: 1px solid #877f72;
+      border: 1px solid $color2;
       vertical-align: top;
 
       background-image: url('../../icons.png');
@@ -80,7 +82,7 @@
       .header,
       .path,
       .days {
-        font-size: 14px;
+        font-size: 12px;
         padding: 3px 0 3px;
       }
 

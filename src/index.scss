@@ -1,7 +1,9 @@
+@import "vars";
+
 body {
   margin: 0;
   padding: 0;
-  color: #a68156;
+  color: $color5;
 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,6 +12,8 @@ body {
 
 input, select {
   box-sizing: border-box;
+  border: 1px solid $color3;
+  color: $color5;
 
   &:focus,
   &:active {
@@ -19,9 +23,9 @@ input, select {
 }
 
 .button {
-  background: #44200c;
-  color: #a68156;
-  border: 1px solid #877f72;
+  background: $color3;
+  color: $color5;
+  border: 1px solid $color3;
   font-size: 12px;
   cursor: pointer;
   margin-left: 10px;
@@ -36,12 +40,8 @@ input, select {
   }
 
   &[disabled] {
-    background: #777;
+    background: $color2;
     cursor: not-allowed;
-    color: #aaa;
-
-    &:hover {
-      color: #aaa;
-    }
+    color: $color4;
   }
 }
