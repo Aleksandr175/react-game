@@ -1,12 +1,40 @@
 import "./Bank.scss";
+import { useState } from "react";
 
-function Bank(props) {
+function Bank({ money, onOpenDeposit, deposits }) {
+  const [amount, setAmount] = useState(null);
   return (
     <div>
       <h2 className="title">Банк</h2>
 
       <div className="panel">
-        {props.deposits.map((deposit) => {
+        <div className="sell-panel">
+          <div className="sell-panel-content">
+            <div>Сумма:</div>
+            <div className="controls">
+              <input
+                type="text"
+                className="input"
+                maxLength={4}
+                value={amount}
+                onChange={(e) => {
+                  setAmount(parseInt(e.target.value, 10) || "");
+                }}
+              />
+              <button
+                className="button"
+                onClick={() => {
+                  onOpenDeposit(amount);
+                }}
+                disabled={!amount || money < amount}
+              >
+                Открыть
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {deposits.map((deposit) => {
           return (
             <div className="good-item-wrapper">
               <div className="good-item-description">
@@ -15,9 +43,7 @@ function Bank(props) {
               <div className="good-item-deposit-info">
                 <div>
                   <div className="header">Сумма: {deposit.amount}</div>
-                  <div className="days">
-                    Дней до получения процента: {deposit.days}
-                  </div>
+                  <div className="days">Дней до закрытия: {deposit.days}</div>
                 </div>
               </div>
             </div>

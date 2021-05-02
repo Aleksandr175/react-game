@@ -94,17 +94,18 @@
 }
 
 .sell-panel {
-  padding: 20px 30px;
+  padding: 5px;
 
   .sell-panel-content {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px;
   }
 
   .sell-panel-info {
     font-size: 10px;
     text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .controls {
@@ -113,7 +114,7 @@
 
     .input {
       background: none;
-      width: 30px;
+      width: 38px;
       margin-right: 5px;
     }
   }
@@ -122,7 +123,7 @@
 .order-panel {
   display: flex;
   justify-content: space-between;
-  padding: 0 30px 20px;
+  padding: 0 5px 5px;
 
   .select-city {
     width: 150px;

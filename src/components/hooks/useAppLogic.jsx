@@ -290,6 +290,25 @@ export const useAppLogic = () => {
     return 0;
   }
 
+  function openDeposit(amount) {
+    if (amount > 0 && money >= amount) {
+      setDeposits((oldDeposits) => {
+        const newDeposits = [...oldDeposits];
+
+        newDeposits.push({
+          days: 30,
+          amount,
+        });
+
+        setMoney((oldMoney) => {
+          return oldMoney - amount;
+        });
+
+        return newDeposits;
+      });
+    }
+  }
+
   return {
     currentCity,
     setCurrentCity,
@@ -307,5 +326,6 @@ export const useAppLogic = () => {
     deposits,
     cityStorages,
     buyGoods,
+    openDeposit,
   };
 };
