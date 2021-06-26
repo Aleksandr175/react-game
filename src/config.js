@@ -223,3 +223,15 @@ export const goods = [
     title: "Кирка",
   },
 ];
+
+export const settings = {
+  startMoney: 1000,
+  goalMoney: 5000,
+  goalDays: 100,
+}
+
+export const gameStatuses = {
+  new: 1,
+  fail: 2,
+  win: 3,
+}

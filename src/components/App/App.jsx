@@ -9,7 +9,7 @@ import Stats from "../Stats/Stats";
 import Bank from "../Bank/Bank";
 import { useAppLogic } from "../hooks/useAppLogic";
 
-import { goods } from "../../config";
+import { goods, gameStatuses } from "../../config";
 
 function App() {
   const {
@@ -30,11 +30,24 @@ function App() {
     buyGoods,
     createTransportOrder,
     openDeposit,
+    gameStatus,
   } = useAppLogic();
 
   return (
     <div className="app">
       <h1 className="app-name">Деревенский трейдер</h1>
+
+      {gameStatus === gameStatuses.win ? (
+        <h2 className="game-status win">Вы выиграли!</h2>
+      ) : (
+        ""
+      )}
+
+      {gameStatus === gameStatuses.fail ? (
+        <h2 className="game-status fail">Вы проиграли!</h2>
+      ) : (
+        ""
+      )}
 
       <Cities
         currentCity={currentCity}

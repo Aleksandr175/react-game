@@ -103,6 +103,7 @@ function Storage(props) {
                   {cities.map((city) => {
                     return (
                       <option
+                        key={"storage-" + city.id}
                         disabled={city.id === props.currentCity}
                         value={city.id}
                       >

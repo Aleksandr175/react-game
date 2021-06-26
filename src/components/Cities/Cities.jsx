@@ -7,6 +7,7 @@ function Cities(props) {
       {cities.map((city) => {
         return (
           <span
+            key={"city-" + city.id}
             className={
               "city " + (props.currentCity === city.id ? "active" : "")
             }

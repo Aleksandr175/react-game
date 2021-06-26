@@ -3,6 +3,8 @@ import {
   defaultCityStoragesData,
   defaultDeposits,
   defaultStoragesData,
+  settings,
+  gameStatuses,
 } from "../../config";
 
 export const useAppLogic = () => {
@@ -16,11 +18,13 @@ export const useAppLogic = () => {
 
   const [cityStorages, setCityStorages] = useState(defaultCityStoragesData);
 
-  const [money, setMoney] = useState(1000);
+  const [money, setMoney] = useState(settings.startMoney);
   const [days, setDays] = useState(1);
 
   const [transportOrders, setTransportOrders] = useState([]);
   const [orderId, setOrderId] = useState(1);
+
+  const [gameStatus, setGameStatus] = useState(gameStatuses.new);
 
   function getCurrentStorage(storages) {
     const store = storages.find((storage) => {
@@ -148,17 +152,31 @@ export const useAppLogic = () => {
   }
 
   function liveProcess() {
-    setInterval(() => {
+    setTimeout(() => {
       updateCityStorages();
       updateTransportOrders();
       updateDeposits();
+      checkGameStatus(days + 1);
+
       setDays((days) => days + 1);
     }, 5000);
   }
 
+  function checkGameStatus(days) {
+    if (days >= settings.goalDays && money < settings.goalMoney) {
+      setGameStatus(gameStatuses.fail);
+    }
+
+    if (money >= settings.goalMoney) {
+      setGameStatus(gameStatuses.win);
+    }
+  }
+
   useEffect(() => {
-    liveProcess();
-  }, []);
+    if (gameStatus === gameStatuses.new) {
+      liveProcess();
+    }
+  }, [days]);
 
   function createTransportOrder(targetCityId) {
     const newOrders = [...transportOrders];
@@ -327,5 +345,6 @@ export const useAppLogic = () => {
     cityStorages,
     buyGoods,
     openDeposit,
+    gameStatus,
   };
 };
